@@ -1,27 +1,22 @@
 import logo from './logo.svg';
-import axios from 'axios';
 import './App.css';
 import React, { useState } from 'react';
+import axios from 'axios';
 
 const endpointURL = process.env.REACT_APP_API_ENDPOINT_URL;
 
 const App = async () => {
-	const [state, setState] = useState();
-	await axios(endpointURL, {
-		headers: {
-			'authorization': `Bearer ${token}`,
-			'Access-Control-Allow-Origin': '*',
-		},
-		params: {
-			usernames: 'developer_japan',
-		},
+	const [state, setState] = useState('');
+	await axios({
+		url: endpointURL,
+		params: { name: 'developer_japan' },
 	})
-		.then((res) => {
-			console.log(res);
-			setState(res);
+		.then((response) => {
+			console.log(response);
+			setState(response);
 		})
-		.catch((err) => {
-			console.log(err);
+		.catch((error) => {
+			console.log(error);
 		});
 	return (
 		<div className="App">
@@ -34,7 +29,7 @@ const App = async () => {
 					Learn React
 				</a>
 			</header>
-			<p>{state}</p>
+			<p>{!state ? '' : state}</p>
 		</div>
 	);
 };
