@@ -3,8 +3,7 @@ import axios from 'axios';
 import './App.css';
 import React, { useState } from 'react';
 
-const endpointURL = 'https://api.twitter.com/2/users/by';
-const token = process.env.REACT_APP_BEARER_TOKEN;
+const endpointURL = process.env.REACT_APP_API_ENDPOINT_URL;
 
 const App = async () => {
 	const [state, setState] = useState();
